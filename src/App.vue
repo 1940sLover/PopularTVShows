@@ -8,23 +8,32 @@
 <template>
   <div id="app">
     <Header theTitle="Popular TV Shows"/>
+    <Card v-bind:tvshows="tvShowList"/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from './components/Header.vue';
+import Card from './components/Card.vue';
 import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Card
   },
-    mounted()
+  data()
+  {
+    return{
+      tvShowList: []
+    }
+  },
+  mounted()
   {
     axios.get('https://api.themoviedb.org/3/tv/popular?api_key=2aff21adbfb438bd1147448bee501822&language=en-US&page=1')
     .then((res) => {
-      this.tasks = res.data;
+      this.tvShowList = res.data.results.slice(0,4);
     })
   }
 }
