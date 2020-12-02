@@ -12,12 +12,14 @@
 </template>
 
 <script>
+//exports the Header template so that it can be used else where
 export default {
     name: "Header",
     props: ['theTitle']
 }
 </script>
 
+// uses scoped so that the styles will only be used for the header template
 <style scoped>
 .tvheader
 {
